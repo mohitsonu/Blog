@@ -1,0 +1,21 @@
+<%- include("partials/header"); -%>
+<h1><center>Home</center></h1>
+<!-- <p><%= startingContent %></p> -->
+
+<% if (posts && posts.length > 0) { %>
+  <% posts.forEach(function(post) { %>
+    <h1><a class="title" href="/posts/<%= post._id %>"><%= post.title %></a></h1>
+    <p>
+      <% if (post.content) { %>
+        <%- post.content.substring(0, 500) + " ..." %>
+      <% } else { %>
+        No content available.
+      <% } %>
+      <a href="/posts/<%= post._id %>">Read More</a>
+    </p>
+  <% }); %>
+<% } else { %>
+  <p>No posts available.</p>
+<% } %>
+
+<%- include("partials/footer"); -%>

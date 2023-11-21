@@ -1,0 +1,29 @@
+<%- include("partials/header"); -%>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<h1>Compose</h1>
+<form class="" action="/compose" method="post">
+  <div class="form-group">
+    <label>Title</label>
+    <input class="form-control" type="text" name="postTitle">
+    <label>Post</label>
+    <!-- Replace the regular textarea with TinyMCE -->
+    <textarea name="postBody" id="postBody" rows="5" cols="30"></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit" name="button">Publish</button>
+</form>
+<br>
+<!-- Logout button outside the form -->
+<a href="/logout" class="btn btn-warning">Logout</a>
+
+<%- include("partials/footer"); -%>
+<script>
+  tinymce.init({
+    selector: '#postBody',
+    plugins: 'lists link image media',
+    toolbar: 'undo redo | formatselect | bold italic | bullist numlist outdent indent | link image | media',
+    skin: 'oxide-dark',
+    content_css: 'dark',
+    height: 300
+  });
+</script>
