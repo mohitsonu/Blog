@@ -32,7 +32,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to MongoDB Atlas database
-mongoose.connect("mongodb+srv://mohitsonu:mohitsonu@blog.26az7mo.mongodb.net/");
+mongoose.connect("mongodb+srv://mohitsonu:mohitsonu@blog.26az7mo.mongodb.net/blogDB?authSource=admin");
+
 
 // Define the Post schema for MongoDB
 const postSchema = {
