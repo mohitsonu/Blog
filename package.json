@@ -14,7 +14,7 @@
     "express": "^4.16.3",
     "express-session": "^1.17.3",
     "lodash": "^4.17.11",
-    "mongoose": "^7.6.3",
+    "mongoose": "^5.13.14",
     "yarn": "^1.22.21"
 
   }
