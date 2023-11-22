@@ -86,7 +86,7 @@ app.route("/login")
   })
   .post((req, res) => {
     const { username, password } = req.body;
-    if (username === "mohitsonu" && password === "mohitsonu") {
+    if (username === "mohitsonu" && password === "mohitsonu@1103") {
       req.session.authenticated = true; // Set the user as authenticated
       res.redirect("/compose"); // Redirect to the compose page on successful login
     } else {
