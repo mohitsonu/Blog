@@ -89,3 +89,86 @@ iframe {
   background-color:goldenrod;
 }
 
+/* contact page */
+
+    .contact_us {
+        background-color: #f1f1f1;
+        padding: 60px 0;
+    }
+
+    .contact_inner {
+        background-color: #fff;
+        box-shadow: 20px 22px 44px 44px #cccc;
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .contact_field {
+        padding: 39px;
+        width: 100%; /* Ensure the form takes the full width */
+        max-width: 600px; /* Adjust the max-width as needed */
+    }
+
+    .contact_field h3 {
+        color: #000;
+        font-size: 28px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .contact_field p {
+        color: #000;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .contact_field .form-control {
+        border-radius: 0px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        display: inline-block;
+        width: calc(100% - 20px); /* Adjust the width as needed */
+        margin-bottom: 20px; /* Adjust the margin as needed */
+    }
+
+    .contact_field .form-control:focus {
+        box-shadow: none;
+        outline: none;
+        border-bottom: 2px solid #1325e8;
+    }
+
+    .contact_field .form-control::placeholder {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    button.contact_form_submit {
+        background: linear-gradient(to top right, #1325e8 -5%, #8f10b7 100%);
+        border: none;
+        color: #fff;
+        padding: 10px 15px;
+        width: 100%;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        letter-spacing: 2px;
+        display: inline-block; /* Make the button inline-block */
+    }
+
+    @media (max-width: 768px) {
+        .contact_field {
+            padding: 20px;
+        }
+
+        .contact_field h3 {
+            font-size: 24px;
+        }
+    }
+
+

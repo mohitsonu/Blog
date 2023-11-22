@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 // Initial content for different sections of the site
 const homeStartingContent = "..."; // Content for the home page
-const aboutContent = "HELLO "; // Content for the about page
+const aboutContent = ""; // Content for the about page
 const contactContent = "..."; // Content for the contact page
 
 // Create an Express application
