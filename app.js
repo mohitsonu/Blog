@@ -4,6 +4,7 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const nodemailer = require("nodemailer");
 
 // Initial content for different sections of the site
 const homeStartingContent = "..."; // Content for the home page
@@ -33,7 +34,6 @@ app.use(express.static("public"));
 
 // Connect to MongoDB Atlas database
 mongoose.connect("mongodb+srv://mohitsonu:mohitsonu@blog.26az7mo.mongodb.net/test?authSource=admin");
-
 
 // Define the Post schema for MongoDB
 const postSchema = {
@@ -110,11 +110,6 @@ app.get("/contact", function (req, res) {
   res.render("contact", { contactContent: contactContent }); // Render the contact page
 });
 
-// Compose page route
-app.get("/compose", function (req, res) {
-  res.render("compose"); // Render the compose page
-});
-
 // Handle form submission for creating a new post
 app.post("/compose", function (req, res) {
   const post = new Post({
@@ -147,6 +142,38 @@ app.get("/posts/:postId", async function (req, res) {
     console.error(err);
     res.status(500).send("Internal Server Error");
   }
+});
+
+// Handle form submission for the contact form
+app.post("/contact", function (req, res) {
+  const { name, email, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    auth: {
+        user: 'emerson.goldner@ethereal.email',
+        pass: 'tVvVEkQ23YwvRWSdYV'
+    }
+});
+
+  const mailOptions = {
+    from: "heisenberg2000@mail.com",
+    to: "mohitsonu33@gmail.com", // Replace with the recipient email address
+    subject: "New Contact Form Submission",
+    text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.error(error);
+      res.send("Error: Something went wrong. Please try again later.");
+    } else {
+      console.log("Email sent: " + info.response);
+      // res.send("Thank you for your message. We'll get back to you soon!");
+      res.render("contact")
+    }
+  });
 });
 
 // Start the server and listen on port 7000

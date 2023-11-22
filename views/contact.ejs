@@ -1,23 +1,27 @@
 <%- include("partials/header"); -%>
-    <br>
-
-    <div class="col">
-        <div class="contact_inner">
-            <div class="row">
-                <div class="col">
-                    <div class="contact_form_inner">
-                        <div class="contact_field">
-                            <h3>Contatc Us</h3>
-                            <p>Feel Free to contact us any time. We will get back to you as soon as we can!.</p>
-                            <input type="text" class="form-control form-group" placeholder="Name" required/>
-                            <input type="text" class="form-control form-group" placeholder="Email" required/>
-                            <textarea class="form-control form-group" placeholder="Message"></textarea>
-                            <button class="contact_form_submit">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<br>
+<div class="col">
+  <div class="contact_inner">
+    <div class="row">
+      <div class="col">
+        <div class="contact_form_inner">
+          <div class="contact_field">
+            <h3>Contact Us</h3>
+            <p>Feel Free to contact us any time. We will get back to you as soon as we can!.</p>
+            
+            <!-- Add the form element with action attribute -->
+            <form action="/contact" method="post">
+              <input type="text" name="name" class="form-control form-group" placeholder="Name" required/>
+              <input type="text" name="email" class="form-control form-group" placeholder="Email" required/>
+              <textarea name="message" class="form-control form-group" placeholder="Message"></textarea>
+              <button type="submit" class="contact_form_submit">Send</button>
+            </form>
+            
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
 
-    <%- include("partials/footer"); -%>
+<%- include("partials/footer"); -%>
