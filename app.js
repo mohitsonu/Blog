@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to MongoDB Atlas database
-mongoose.connect("mongodb+srv://mohitsonu:mohitsonu@blog.26az7mo.mongodb.net/test?authSource=admin");
+mongoose.connect("mongodb+srv://mohitsonu:mohitsonu@blog.26az7mo.mongodb.net/test?authSource=admin", { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Define the Post schema for MongoDB
 const postSchema = {
@@ -56,7 +56,28 @@ const authenticate = (req, res, next) => {
 // Apply authentication middleware only to the /compose route
 app.use("/compose", authenticate);
 
-// Define routes and their handlers
+// Render the compose page for GET requests to /compose
+app.get("/compose", authenticate, (req, res) => {
+  res.render("compose");
+});
+
+// Handle form submission for creating a new post on POST requests to /compose
+app.post("/compose", authenticate, (req, res) => {
+  // Your existing code to handle post creation
+  const post = new Post({
+    title: req.body.postTitle,
+    content: req.body.postBody,
+  });
+
+  post.save()
+    .then(() => {
+      res.redirect("/"); // Redirect to the home page after successful post creation
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Internal Server Error");
+    });
+});
 
 // Login routes
 app.route("/login")
@@ -108,23 +129,6 @@ app.get("/about", function (req, res) {
 // Contact page route
 app.get("/contact", function (req, res) {
   res.render("contact", { contactContent: contactContent }); // Render the contact page
-});
-
-// Handle form submission for creating a new post
-app.post("/compose", function (req, res) {
-  const post = new Post({
-    title: req.body.postTitle,
-    content: req.body.postBody,
-  });
-
-  post.save()
-    .then(() => {
-      res.redirect("/"); // Redirect to the home page after successful post creation
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Internal Server Error");
-    });
 });
 
 // View a specific post route
